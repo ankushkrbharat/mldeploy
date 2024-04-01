@@ -10,12 +10,8 @@ app=Flask(__name__)
 with open('model_pickle','rb') as f:
    mp= pickle.load(f)
 
-@app.route('/')
-def hello():
-    return "hello"
 
-
-@app.route('/api/price', methods=['POST'])
+@app.route('/', methods=['POST'])
 def postit():
      # Extract data from the POST request
     data = request.get_json()
