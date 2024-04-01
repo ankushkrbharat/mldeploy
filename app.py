@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,7 +11,12 @@ with open('model_pickle','rb') as f:
    mp= pickle.load(f)
 
 
-@app.route('/', methods=['POST'])
+
+@app.route('/')
+def Home():
+    return render_template("index.html")
+
+@app.route('/predict', methods=['POST'])
 def postit():
      # Extract data from the POST request
     data = request.get_json()
