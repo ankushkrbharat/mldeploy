@@ -4,8 +4,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
+from flask_cors import CORS
 
 app=Flask(__name__)
+
+CORS(app)
 
 with open('model_pickle','rb') as f:
    mp= pickle.load(f)
@@ -30,11 +33,10 @@ def postit():
 
     # Process the data or perform any necessary operations
     # For demonstration, let's just return the extracted data in a response
-    try:
-        price=mp.predict([[area,br,bt
+    
+    price=mp.predict([[area,br,bt
                        ,n,age]])[0]
-    except:
-        print("error in prediction")
+    
         
     response_data = {
             "price":price
